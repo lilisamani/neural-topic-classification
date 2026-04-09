@@ -57,6 +57,8 @@ cover/
 
 # Data files
 *.tsv
+*.pkl
+*.pth
 
 # Django stuff:
 *.log

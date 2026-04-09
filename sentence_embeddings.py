@@ -31,9 +31,9 @@ def compute_sentence_embeddings(
         [row[3] for row in data],
         vector_size=dimensionality,
         min_count=1,
-        window=5,
-        workers=16,
-        epochs=100,
+        window=13,
+        workers=32,
+        epochs=2000,
     )
     for index in range(len(data)):
         embedding = model.wv[data[index][3]].mean(axis=0)
@@ -41,11 +41,10 @@ def compute_sentence_embeddings(
     return data
 
 
-# save embeddings to the output file in tsv format with columns:
-# dataset (train/dev/test), index_id, label, embedding (as a list of floats)
+# save embeddings to the output file in pickle format using pandas
 def save_embeddings_to_file(data, output_file):
     df = pd.DataFrame(data, columns=["dataset", "index_id", "label", "text", "embedding"])
-    df.to_csv(output_file, sep="\t", index=False)
+    df.to_pickle(output_file)
 
 
 if __name__ == "__main__":
