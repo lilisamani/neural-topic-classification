@@ -94,7 +94,7 @@ set and print the test set accuracy and confusion matrix:
 ```bash
 $ python3 evaluate_on_test.py embeddings.pkl model.pth
 ```
-Which prints the following output (please maximize your window to see the matrix properly):
+Which prints the following output:
 ```bash
 Test Accuracy: 75.98%
 Confusion Matrix:
