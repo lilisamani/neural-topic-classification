@@ -60,33 +60,23 @@ This will train a neural topic classification model using the sentence embedding
 step, for 200 epochs, and batch size of 32, and save the trained model to "model.pth".
 The script will also print the validation accuracy after each epoch of training:
 ```bash
-Epoch 1/200, Validation Accuracy: 25.25%
-Epoch 2/200, Validation Accuracy: 25.25%
-Epoch 3/200, Validation Accuracy: 25.25%
-Epoch 4/200, Validation Accuracy: 25.25%
-Epoch 5/200, Validation Accuracy: 25.25%
-Epoch 6/200, Validation Accuracy: 25.25%
-Epoch 7/200, Validation Accuracy: 25.25%
-Epoch 8/200, Validation Accuracy: 25.25%
-Epoch 9/200, Validation Accuracy: 30.30%
-Epoch 10/200, Validation Accuracy: 32.32%
-Epoch 11/200, Validation Accuracy: 40.40%
-Epoch 12/200, Validation Accuracy: 42.42%
-Epoch 13/200, Validation Accuracy: 43.43%
-Epoch 14/200, Validation Accuracy: 42.42%
-Epoch 15/200, Validation Accuracy: 42.42%
-Epoch 16/200, Validation Accuracy: 44.44%
-Epoch 17/200, Validation Accuracy: 46.46%
-Epoch 18/200, Validation Accuracy: 48.48%
-Epoch 19/200, Validation Accuracy: 51.52%
-Epoch 20/200, Validation Accuracy: 52.53%
+Epoch 1/200, Validation Accuracy: 32.32%
+Epoch 2/200, Validation Accuracy: 31.31%
+Epoch 3/200, Validation Accuracy: 32.32%
 .
 .
 .
-Epoch 198/200, Validation Accuracy: 73.74%
-Epoch 199/200, Validation Accuracy: 73.74%
-Epoch 200/200, Validation Accuracy: 73.74%
+Epoch 198/200, Validation Accuracy: 74.75%
+Epoch 199/200, Validation Accuracy: 74.75%
+Epoch 200/200, Validation Accuracy: 74.75%
+
+Validation accuracy progress saved to validation_accuracy.png
+Model saved successfully to model.pth
 ```
+#### Validation Accuracy Progress Plotting (Bonus 1)
+The script also saves the validation accuracy plot to a file named "validation_accuracy.png":
+
+![Validation Accuracy Progress](validation_accuracy.png)
 
 ### Step 4: Evaluate the trained model on the test set
 Run the following command in the terminal to evaluate the trained model (`model.pth`) on the test

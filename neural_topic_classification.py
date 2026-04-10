@@ -1,6 +1,7 @@
 import argparse
 from pathlib import Path
 
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import torch
@@ -55,6 +56,7 @@ def neural_topic_classification(embeddings_file, epochs, batch_size, output_mode
     # Loss function and optimizer
     criterion = nn.CrossEntropyLoss()
     optimizer = torch.optim.Adam(model.parameters(), lr=0.00002)
+    dev_accuracies = []
     # Training loop
     for epoch in range(epochs):
         model.train()
@@ -72,13 +74,23 @@ def neural_topic_classification(embeddings_file, epochs, batch_size, output_mode
                 outputs = model(X_batch)
                 dev_correct += (outputs.argmax(dim=1) == y_batch).sum().item()
 
-        print(
-            f"Epoch {epoch + 1}/{epochs}, "
-            f"Validation Accuracy: {100 * dev_correct / len(dev_loader.dataset):.2f}%"
-        )
+        dev_accuracies.append(100 * dev_correct / len(dev_loader.dataset))
+        print(f"Epoch {epoch + 1}/{epochs}, " f"Validation Accuracy: {dev_accuracies[-1]:.2f}%")
+    print()
+
+    # Save the progress of the model during training to a .png file
+    plt.plot(range(1, epochs + 1), dev_accuracies, marker="o")
+    plt.xlabel("Epoch")
+    plt.ylabel("Validation Accuracy (%)")
+    plt.title("Validation Accuracy Progress")
+    plt.grid(True)
+    plt.savefig("validation_accuracy.png")
+    plt.close()
+    print("Validation accuracy progress saved to validation_accuracy.png")
 
     # Save the trained model to the output file
     torch.save(model.state_dict(), output_model)
+    print(f"Model saved successfully to {output_model}")
 
 
 if __name__ == "__main__":
