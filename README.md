@@ -7,6 +7,15 @@ README file).\
 All the commands are provided in a single script file named `run_all.sh`, which you can run in the
 terminal to execute all the steps sequentially.
 
+The terminal output of a similar run on `mltgpu` is also provided in the [`mltgpu_output.txt`](mltgpu_output.txt) file.
+
+### Step 0: Setup the venv and install the required dependencies
+```bash
+python3 -m venv .venv
+. .venv/bin/activate
+pip install -r requirements.txt
+```
+
 ### Step 1: Download the input files
 Run the following command in the terminal to download the input files (train, dev, test, and labels)
 into a directory named "data":
