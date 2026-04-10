@@ -1,0 +1,9 @@
+python3 download_input_files.py --data-dir data
+python3 sentence_embeddings.py 1024 embeddings.pkl --train-file data/train.tsv --dev-file data/dev.tsv --test-file data/test.tsv
+python3 neural_topic_classification.py embeddings.pkl 200 32 model.pth
+mv validation_accuracy.png validation_accuracy_nosif.png
+python3 evaluate_on_test.py embeddings.pkl model.pth
+python3 sentence_embeddings.py 1024 embeddings_sif.pkl --train-file data/train.tsv --dev-file data/dev.tsv --test-file data/test.tsv --sif
+python3 neural_topic_classification.py embeddings_sif.pkl 200 32 model_sif.pth
+mv validation_accuracy.png validation_accuracy_sif.png
+python3 evaluate_on_test.py embeddings_sif.pkl model_sif.pth

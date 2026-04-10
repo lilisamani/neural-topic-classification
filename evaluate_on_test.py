@@ -27,9 +27,9 @@ def evaluate_on_test(embeddings_file, trained_model):
     model = nn.Sequential(
         nn.Linear(X_test.shape[1], 1024),
         nn.ReLU(),
-        nn.Linear(1024, 16),
+        nn.Linear(1024, 32),
         nn.ReLU(),
-        nn.Linear(16, len(label_to_id)),
+        nn.Linear(32, len(label_to_id)),
     )
     model.load_state_dict(torch.load(trained_model))
     model.eval()

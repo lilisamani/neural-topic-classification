@@ -48,9 +48,9 @@ def neural_topic_classification(embeddings_file, epochs, batch_size, output_mode
     model = nn.Sequential(
         nn.Linear(X_train.shape[1], 1024),
         nn.ReLU(),
-        nn.Linear(1024, 16),
+        nn.Linear(1024, 32),
         nn.ReLU(),
-        nn.Linear(16, len(label_to_id)),
+        nn.Linear(32, len(label_to_id)),
     )
 
     # Loss function and optimizer
