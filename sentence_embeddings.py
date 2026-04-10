@@ -2,7 +2,7 @@ import argparse
 from pathlib import Path
 
 import pandas as pd
-from gensim.models import Word2Vec
+from gensim.models import FastText
 
 
 def read_data(file_path: Path):
@@ -27,12 +27,12 @@ def compute_sentence_embeddings(
     for dataset, dataset_name in zip([train_dt, dev_dt, test_dt], ["train", "dev", "test"]):
         for entry in dataset.itertuples():
             data.append([dataset_name, entry.index_id, entry.category, list(entry.text)])
-    model = Word2Vec(
+    model = FastText(
         [row[3] for row in data],
         vector_size=dimensionality,
         min_count=1,
         window=13,
-        workers=32,
+        workers=16,
         epochs=2000,
     )
     for index in range(len(data)):
